@@ -98,11 +98,14 @@ export const presetColors = {
 
 
 export const hexToHsl = (hex: string) => {
-  if (hex.toLowerCase() === '#000000') return console.error('Cannot set light to black');
-  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (hex.toLowerCase() === '#000000') {
+    throw new Error('Cannot set light to black');
+  }
+
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
   if (!result) {
-    throw new Error("result is empty")
+    throw new Error('Invalid hex string');
   }
 
   let r = parseInt(result[1], 16);
@@ -143,7 +146,9 @@ export const hexToHsl = (hex: string) => {
 export const temperature = (temp: string) => {
   let t = parseInt(temp.slice(0,-1));
 
-  if(t<2500||t>6500) return console.error('Colour temperature should be between 2500K and 6500K.');
+  if(t < 2500 || t > 6500) {
+    throw new Error('Colour temperature should be between 2500K and 6500K.');
+  }
 
   return{
     color_temp: t
