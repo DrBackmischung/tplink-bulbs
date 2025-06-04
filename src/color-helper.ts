@@ -114,10 +114,6 @@ export const hexToHsl = (hex: string) => {
   let max = Math.max(r, g, b), min = Math.min(r, g, b);
   let h, s, l = (max + min) / 2;
 
-  if (!h) {
-    throw new Error("h is not a humber")
-  }
-
   if(max == min){
     h = s = 0; // achromatic
   } else {
