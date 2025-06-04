@@ -59,6 +59,11 @@ async function run() {
 run().catch(console.error);
 ```
 
+> **Note**: `loginDevice` resolves the device's IP address via your local network.
+> Ensure the machine running this code is connected to the same network as the
+> Tapo device. If you already know the IP address or ARP discovery fails, call
+> `loginDeviceByIp(email, password, deviceIp)` instead.
+
 ---
 
 ## 💡 Features
