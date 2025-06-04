@@ -98,7 +98,6 @@ export const presetColors = {
 
 
 export const hexToHsl = (hex: string) => {
-  if (hex.toLowerCase() === '#000000') return console.error('Cannot set light to black');
   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
   if (!result) {
@@ -112,7 +111,7 @@ export const hexToHsl = (hex: string) => {
   r /= 255, g /= 255, b /= 255;
 
   let max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h, s, l = (max + min) / 2;
+  let h = 0, s, l = (max + min) / 2;
 
   if(max == min){
     h = s = 0; // achromatic
