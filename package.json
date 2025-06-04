@@ -9,7 +9,8 @@
         "build": "tsc",
         "start": "node dist/index.js",
         "demo": "npx tsc examples/demo.ts && node examples/demo.js",
-        "dev": "ts-node examples/demo.ts"
+        "dev": "ts-node examples/demo.ts",
+        "test": "ts-node tests/index.ts"
     },
     "files": ["dist"],
     "keywords": [
