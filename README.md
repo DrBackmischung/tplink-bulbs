@@ -15,16 +15,6 @@ or if using from local project:
 npm install
 ```
 
-## 🧪 Running Tests
-
-After installing dependencies you can execute the Jest test suite with:
-
-```bash
-npm test
-```
-
----
-
 ## 🚀 Quickstart Example
 
 ```typescript
