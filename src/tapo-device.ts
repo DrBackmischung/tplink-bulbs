@@ -1,4 +1,4 @@
-import { getColour } from "./color-helper"
+import { getColor, RGB } from "./color-helper"
 import { base64Decode } from "./tplink-cipher"
 import { TapoDeviceInfo, TapoProtocol } from "./types"
 
@@ -57,8 +57,8 @@ export const TapoDevice = ({ send }: TapoProtocol) => {
         await send(setHueRequest)
       },
       
-      setColour: async (colour: string = 'white') => {
-        const params = getColour(colour);
+      setColour: async (colour: string | RGB = 'white') => {
+        const params = getColor(colour);
       
         const setColourRequest = {
           "method": "set_device_info",

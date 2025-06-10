@@ -70,6 +70,47 @@ export const presetColors = {
     color_temp: 0
   },
 
+  lavender: {
+    hue: 250,
+    saturation: 100,
+    color_temp: 0
+  },
+  coral: {
+    hue: 16,
+    saturation: 100,
+    color_temp: 0
+  },
+  mint: {
+    hue: 150,
+    saturation: 100,
+    color_temp: 0
+  },
+  teal: {
+    hue: 180,
+    saturation: 100,
+    color_temp: 0
+  },
+  navy: {
+    hue: 240,
+    saturation: 100,
+    color_temp: 0
+  },
+  olive: {
+    hue: 60,
+    saturation: 100,
+    color_temp: 0
+  },
+  maroon: {
+    hue: 0,
+    saturation: 100,
+    color_temp: 0
+  },
+  grey: {
+    hue: 0,
+    saturation: 0,
+    color_temp: 0
+  },
+
   white: {
     color_temp: 4500
   },
@@ -115,7 +156,9 @@ export const hexToHsl = (hex: string) => {
   r /= 255, g /= 255, b /= 255;
 
   let max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h, s, l = (max + min) / 2;
+  let h = 0;
+  let s = 0;
+  let l = (max + min) / 2;
 
   if(max == min){
     h = s = 0; // achromatic
@@ -153,12 +196,57 @@ export const temperature = (temp: string) => {
   return{
     color_temp: t
   };
-}
+};
 
-export const getColour = (colour: string) => {
-  colour = colour.toLowerCase();
-  if (colour.startsWith('#')) return hexToHsl(colour);
-  if (colour.endsWith('k')) return temperature(colour);
-  if (Object.keys(presetColors).includes(colour)) return presetColors[colour as keyof typeof presetColors];
-  throw new Error('Invalid Colour');
-}
+export type RGB = { r: number; g: number; b: number };
+
+export const rgbToHsl = (rgb: RGB) => {
+  const { r, g, b } = rgb;
+  if (r === 0 && g === 0 && b === 0) {
+    throw new Error('Cannot set light to black');
+  }
+
+  let rNorm = r / 255;
+  let gNorm = g / 255;
+  let bNorm = b / 255;
+
+  let max = Math.max(rNorm, gNorm, bNorm), min = Math.min(rNorm, gNorm, bNorm);
+  let h = 0;
+  let s = 0;
+  let l: number = (max + min) / 2;
+
+  if (max == min) {
+    h = s = 0;
+  } else {
+    let d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case rNorm: h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0); break;
+      case gNorm: h = (bNorm - rNorm) / d + 2; break;
+      default: h = (rNorm - gNorm) / d + 4; break;
+    }
+    h /= 6;
+  }
+
+  s = Math.round(s * 100);
+  l = Math.round(l * 100);
+  h = Math.round(360 * h);
+
+  return {
+    hue: h,
+    saturation: s,
+    brightness: l
+  };
+};
+
+export const getColor = (colour: string | RGB) => {
+  if (typeof colour === 'string') {
+    let c = colour.toLowerCase();
+    if (c.startsWith('#')) return hexToHsl(c);
+    if (c.endsWith('k')) return temperature(c);
+    if (Object.keys(presetColors).includes(c)) return presetColors[c as keyof typeof presetColors];
+    throw new Error('Invalid Colour');
+  }
+  return rgbToHsl(colour);
+};
+
