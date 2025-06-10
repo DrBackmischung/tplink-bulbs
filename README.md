@@ -51,6 +51,18 @@ async function run() {
   await device.setColour('orange');
   await TPLink.API.delay(500);
 
+  // colours can also be set using hex codes
+  await device.setColour('#00ff00');
+  await TPLink.API.delay(500);
+
+  // or by providing an RGB object
+  await device.setColour({ r: 0, g: 0, b: 255 });
+  await TPLink.API.delay(500);
+
+  // you can change only the brightness (or hue/saturation)
+  await device.setBrightness(50);
+  await TPLink.API.delay(500);
+
   //...
 }
 
