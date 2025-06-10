@@ -78,7 +78,7 @@ run().catch(console.error);
 
 - Cloud login
 - List devices from TP-Link Cloud
-- Set color by name, hex, temperature, HSL
+- Set color by name, hex, temperature, HSL or RGB
 - A lot of color presets included
 - Full TypeScript strict typing
 - Easy to use
@@ -87,7 +87,7 @@ run().catch(console.error);
 
 ## 🌈 Available Color Presets
 
-`blue`, `red`, `yellow`, `green`, `cyan`, `magenta`, `orange`, `pink`, `turquoise`, `violet`, `lavender`, `coral`, `mint`, `white`, `daylightwhite`, `warmwhite`
+`blue`, `red`, `yellow`, `green`, `cyan`, `magenta`, `orange`, `pink`, `turquoise`, `violet`, `lavender`, `coral`, `mint`, `teal`, `navy`, `olive`, `maroon`, `grey`, `white`, `daylightwhite`, `warmwhite`
 
 (And you can set any hex color like `#ff0000` too!)
 
