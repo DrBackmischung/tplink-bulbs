@@ -10,7 +10,7 @@
         "start": "node dist/index.js",
         "demo": "npx tsc examples/demo.ts && node examples/demo.js",
         "dev": "ts-node examples/demo.ts",
-        "test": "ts-node tests/index.ts"
+        "test": "ts-node test/color-helper.test.ts"
     },
     "files": ["dist"],
     "keywords": [
