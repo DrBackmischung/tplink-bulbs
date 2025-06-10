@@ -1,6 +1,6 @@
 {
     "name": "tplink-bulbs",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "TypeScript library to control TP-Link Tapo devices via cloud and local network.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
         "start": "node dist/index.js",
         "demo": "npx tsc examples/demo.ts && node examples/demo.js",
         "dev": "ts-node examples/demo.ts",
-        "test": "jest"
+        "test": "jest",
+        "coverage": "jest --coverage"
     },
     "files": ["dist"],
     "keywords": [
