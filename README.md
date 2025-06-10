@@ -17,7 +17,7 @@ npm install
 
 ## 🧪 Running Tests
 
-After installing dependencies you can execute the test suite with:
+After installing dependencies you can execute the Jest test suite with:
 
 ```bash
 npm test
