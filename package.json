@@ -1,6 +1,6 @@
 {
     "name": "tplink-bulbs",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "TypeScript library to control TP-Link Tapo devices via cloud and local network.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
