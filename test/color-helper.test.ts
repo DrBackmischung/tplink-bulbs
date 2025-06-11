@@ -5,6 +5,8 @@ describe('color-helper', () => {
     expect(() => hexToHsl('#000000')).toThrow('Cannot set light to black');
     expect(() => hexToHsl('#zzzzzz')).toThrow('Invalid hex string');
     expect(() => temperature('2000K')).toThrow('Colour temperature should be between 2500K and 6500K.');
+    expect(() => temperature('7000K')).toThrow('Colour temperature should be between 2500K and 6500K.');
+    expect(() => getColor('black')).toThrow('Invalid Colour');
     expect(() => getColor('invalid')).toThrow('Invalid Colour');
     expect(() => getColor({ r: 0, g: 0, b: 0 })).toThrow('Cannot set light to black');
   });
