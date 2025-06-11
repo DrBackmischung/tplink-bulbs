@@ -27,7 +27,7 @@ describe('resolveMacToIp', () => {
 
     const ip = await resolveMacToIp('84-d8-1b-aa-bb-cc');
     expect(ip).toBe('192.168.0.11');
-    expect(arp.toIP).toHaveBeenCalledTimes(2);
+    expect(arp.toIP).toHaveBeenCalledTimes(1);
     expect(find).toHaveBeenCalled();
   });
 });
