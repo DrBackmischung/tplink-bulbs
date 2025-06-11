@@ -7,7 +7,18 @@ const email = process.env.TAPO_USERNAME;
 const password = process.env.TAPO_PASSWORD;
 const deviceId = process.env.TAPO_DEVICE_ID;
 
-const run = email && password && deviceId;
+const placeholders = [
+  'your-email@example.com',
+  'your-password',
+  'your-device-id',
+];
+const run =
+  email &&
+  password &&
+  deviceId &&
+  !placeholders.includes(email) &&
+  !placeholders.includes(password) &&
+  !placeholders.includes(deviceId);
 (run ? test : test.skip)('login and fetch device info', async () => {
   const cloud = await TPLink.API.cloudLogin(email, password);
   const devices = await cloud.listDevices();
