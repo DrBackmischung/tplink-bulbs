@@ -1,7 +1,11 @@
-import { TapoDevice } from '../src/tapo-device';
+import { TapoDevice, TapoDeviceController } from '../src/tapo-device';
 import { presetColors } from '../src/color-helper';
 
 describe('TapoDevice', () => {
+  test('factory returns TapoDeviceController', () => {
+    const device = TapoDevice({ send: async () => {} });
+    expect(device).toBeInstanceOf(TapoDeviceController);
+  });
   test('device control methods send correct payloads', async () => {
     const send = jest.fn(async (req) => req);
     const device = TapoDevice({ send });
