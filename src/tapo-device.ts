@@ -94,4 +94,3 @@ export const TapoDevice = ({ send }: TapoProtocol): TapoDeviceController => {
   return new TapoDeviceController({ send });
 };
 
-export { TapoDeviceController };
