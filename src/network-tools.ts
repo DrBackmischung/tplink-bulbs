@@ -1,20 +1,24 @@
 import { parse } from 'macaddr';
-import arp from '@network-utils/arp-lookup'
+import arp from '@network-utils/arp-lookup';
 import find from 'local-devices';
 
+const MAX_LOOKUP_ATTEMPTS = 5;
+
 export const resolveMacToIp = async (mac: string): Promise<string | undefined> => {
-    const mac2 = tidyMac(mac);
+    const macAddress = tidyMac(mac);
 
-    let trial = 0;
-    let ip = await arp.toIP(mac2) ?? (await find()).find(devices => devices.mac === mac2)?.ip;
+    let attempt = 0;
+    let ip = await lookupIp(macAddress);
 
-    while (trial < 5 && !ip) {
-        trial++;
-        ip = await arp.toIP(mac2) ?? (await find()).find(devices => devices.mac === mac2)?.ip;
+    while (attempt < MAX_LOOKUP_ATTEMPTS && !ip) {
+        attempt++;
+        ip = await lookupIp(macAddress);
     }
 
     return ip;
-}
+};
 
-const tidyMac = (mac: string): string => 
-    parse(mac).toString();
+const lookupIp = async (mac: string): Promise<string | undefined> =>
+    await arp.toIP(mac) ?? (await find()).find(device => device.mac === mac)?.ip;
+
+const tidyMac = (mac: string): string => parse(mac).toString();
