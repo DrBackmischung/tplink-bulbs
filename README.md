@@ -80,7 +80,7 @@ run().catch(console.error);
 
 - Cloud login
 - List devices from TP-Link Cloud
-- Set color by name, hex, temperature, HSL or RGB
+- Set color by name, hex, temperature and now also by HSL, HSV, CMYK or RGB
 - A lot of color presets included
 - Full TypeScript strict typing
 - Easy to use
