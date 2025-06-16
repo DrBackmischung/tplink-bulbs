@@ -1,4 +1,4 @@
-import { hexToHsl, rgbToHsl, getColor, temperature } from '../src/color-helper';
+import { hexToHsl, rgbToHsl, getColor, temperature, hsvToHsl, hslToHsl, cmykToHsl, presetColors } from '../src/color-helper';
 
 describe('color-helper', () => {
   test('throws on invalid input', () => {
@@ -19,5 +19,24 @@ describe('color-helper', () => {
     expect(getColor('red')).toEqual({ hue: 0, saturation: 100, color_temp: 0 });
     expect(getColor('mint')).toEqual({ hue: 150, saturation: 100, color_temp: 0 });
     expect(getColor('4500K')).toEqual({ color_temp: 4500 });
+  });
+
+  test('handles additional colour models', () => {
+    const redHsl = { hue: 0, saturation: 100, brightness: 50 };
+    expect(hslToHsl({ h: 0, s: 100, l: 50 })).toEqual(redHsl);
+    expect(hsvToHsl({ h: 0, s: 100, v: 100 })).toEqual({ hue: 0, saturation: 100, brightness: 100 });
+    expect(cmykToHsl({ c: 0, m: 100, y: 100, k: 0 })).toEqual(redHsl);
+    expect(getColor({ h: 0, s: 100, l: 50 })).toEqual(redHsl);
+    expect(getColor({ h: 0, s: 100, v: 100 })).toEqual({ hue: 0, saturation: 100, brightness: 100 });
+    expect(getColor({ c: 0, m: 100, y: 100, k: 0 })).toEqual(redHsl);
+  });
+
+  test('mixes preset colours', () => {
+    const mixed = getColor('bluegreen');
+    expect(mixed).toEqual({
+      hue: Math.round((presetColors.blue.hue + presetColors.green.hue) / 2),
+      saturation: Math.round((presetColors.blue.saturation + presetColors.green.saturation) / 2),
+      color_temp: 0,
+    });
   });
 });
