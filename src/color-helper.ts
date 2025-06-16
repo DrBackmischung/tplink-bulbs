@@ -302,7 +302,10 @@ export const hsvToHsl = (hsv: HSV) => {
   if (hsv.v === 0) {
     throw new Error('Cannot set light to black');
   }
-  return rgbToHsl(hsvToRgb(hsv));
+  const hue = Math.round(hsv.h % 360);
+  const saturation = Math.max(0, Math.min(100, hsv.s));
+  const brightness = Math.max(0, Math.min(100, hsv.v));
+  return { hue, saturation, brightness };
 };
 
 export const cmykToHsl = (cmyk: CMYK) => {
